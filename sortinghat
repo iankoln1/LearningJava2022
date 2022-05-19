@@ -1,0 +1,111 @@
+import javax.swing.JFrame;
+import javax.swing.ButtonGroup;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JLabel;
+import javax.swing.JRadioButton;
+import javax.swing.JButton;
+
+public class SortingQuiz extends JFrame implements ActionListener {
+
+	JLabel label;
+	JRadioButton Buttons[] = new JRadioButton[5];
+	JButton btnNext, btnResult;
+	ButtonGroup bg;
+	int count = 0;
+	int current = 0;
+	int x = 1;
+	int y = 1;
+	int now = 0;
+	int m[] = new int[10];
+	String[] houses = {"ravenclaw", "gryffindor", "slytherin","hufflepuff"};
+	
+	public static void main(String[] args) {
+		new SortingQuiz("quiz");
+	}
+
+	SortingQuiz(String s) {
+		super(s);
+		label = new JLabel();
+		add(label);
+		bg = new ButtonGroup();
+		for (int i = 0; i < 5; i++) {
+			Buttons[i] = new JRadioButton();
+			add(Buttons[i]);
+			bg.add(Buttons[i]);
+
+		}
+		btnNext = new JButton("Next");
+		btnResult = new JButton("Result");
+		btnResult.setVisible(false);
+		btnResult.addActionListener(this);
+		btnNext.addActionListener(this);
+		add(btnNext);
+		add(btnResult);
+		setData();
+		label.setBounds(30,40,450,20);
+		Buttons[0].setBounds(50,80,450,20);
+		Buttons[1].setBounds(50,110,200,20);
+		Buttons[2].setBounds(50,140,200,20);
+		Buttons[3].setBounds(50,170,200,20);
+		btnNext.setBounds(100,240,100,30);
+		btnResult.setBounds(270,240,100,30);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLayout(null);
+		setLocation(250,100);
+		setVisible(true);
+		setSize(600,350);
+		
+		
+	}
+	void setData() {
+		Buttons[4].setSelected(true);
+		if(current == 0) {
+			label.setText("After you have died, what would you most like people to do when they hear your name?");
+			Buttons[0].setText("Think with admiration of your achievements");
+			Buttons[1].setText("Ask for more stories about your adventures");
+			Buttons[2].setText("I don't care what people think when I die; it's what they think when I'm alive that counts");
+			Buttons[3].setText("Miss you, but smile");
+		}
+		if(current == 1) {
+			label.setText("Which of the following would you most hate people to call you?");
+			Buttons[0].setText("Ignorant");
+			Buttons[1].setText("Cowardly");
+			Buttons[2].setText("Ordinary");
+			Buttons[3].setText("Selfish");
+		}
+		if(current == 2) {
+			label.setText("Given the choice, would you rather invent a potion that would give you");
+			Buttons[0].setText("Wisdom?");
+			Buttons[1].setText("Glory?");
+			Buttons[2].setText("Power?");
+			Buttons[3].setText("Love?");
+		}
+		if(current == 3) {
+			label.setText("How would you like to be known to history?");
+			Buttons[0].setText("The Wise");
+			Buttons[1].setText("The Bold");
+			Buttons[2].setText("The Great");
+			Buttons[3].setText("The Good");
+		}
+		label.setBounds(30,40,450,20);
+		for(int i =0,j=0; i<90; i+=30,j++) {
+			Buttons[j].setBounds(50,80+1,200,20);
+		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==btnNext) {
+			count++;
+			setData();
+			if(current==9) {
+				btnNext.setEnabled(false);
+				btnResult.setVisible(true);
+				btnResult.setText("result");
+			}
+		}
+		
+	}
+	
+}
