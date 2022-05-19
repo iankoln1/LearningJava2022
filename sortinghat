@@ -3,6 +3,7 @@ import javax.swing.ButtonGroup;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 
@@ -18,7 +19,12 @@ public class SortingQuiz extends JFrame implements ActionListener {
 	int y = 1;
 	int now = 0;
 	int m[] = new int[10];
-	String[] houses = {"ravenclaw", "gryffindor", "slytherin","hufflepuff"};
+	int griff = 0;
+	int raven = 0;
+	int slyth = 0;
+	int huff = 0;
+	String house;
+	
 	
 	public static void main(String[] args) {
 		new SortingQuiz("quiz");
@@ -44,17 +50,17 @@ public class SortingQuiz extends JFrame implements ActionListener {
 		add(btnResult);
 		setData();
 		label.setBounds(30,40,450,20);
-		Buttons[0].setBounds(50,80,450,20);
-		Buttons[1].setBounds(50,110,200,20);
-		Buttons[2].setBounds(50,140,200,20);
-		Buttons[3].setBounds(50,170,200,20);
+		Buttons[0].setBounds(50,80,900,20);
+		Buttons[1].setBounds(50,110,600,20);
+		Buttons[2].setBounds(50,140,600,20);
+		Buttons[3].setBounds(50,170,600,20);
 		btnNext.setBounds(100,240,100,30);
 		btnResult.setBounds(270,240,100,30);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(null);
 		setLocation(250,100);
 		setVisible(true);
-		setSize(600,350);
+		setSize(1000,700);
 		
 		
 	}
@@ -88,22 +94,145 @@ public class SortingQuiz extends JFrame implements ActionListener {
 			Buttons[2].setText("The Great");
 			Buttons[3].setText("The Good");
 		}
+		if(current == 4) {
+			label.setText("You enter an enchanted garden. What would you be most curious to examine first?");
+			Buttons[0].setText("The silver leafed tree bearing golden apples");
+			Buttons[1].setText("The statue of an old wizard with a strangely twinkling eye");
+			Buttons[2].setText("The bubbling pool, in the depths of which something luminous is swirling?");
+			Buttons[3].setText("The fat red toadstools that appear to be talking to each other");
+		}
+		if(current == 5) {
+			label.setText("What kind of instrument most pleases your ear?");
+			Buttons[0].setText("The piano");
+			Buttons[1].setText("The drum");
+			Buttons[2].setText("The violin");
+			Buttons[3].setText("The trumpet");
+		}
+		if(current == 6) {
+			label.setText("Four boxes are placed before you. Which would you try and open");
+			Buttons[0].setText("The ornate golden casket, standing on clawed feet, whose inscription warns that both secret knowledge and unbearable temptation lie within.");
+			Buttons[1].setText("The small pewter box, unassuming and plain, with a scratched message upon it that reads \" open only for the worthy.\"");
+			Buttons[2].setText("The gleaming jet black box with a silver lock and key, marked with a mysterious rune that you know to be the mark of Merlin.");
+			Buttons[3].setText("The small tortoiseshell box, embellished with gold, inside which some small creature seems to be squeaking.");
+		}
+		if(current == 7) {
+			label.setText("Four goblets are placed before you. Which would you choose to drink?");
+			Buttons[0].setText("The foaming, frothing, silvery liquid that sparkles as though containing ground diamonds.");
+			Buttons[1].setText("The golden liquid so bright that it hurts the eye, and which makes sunspots dance all around the room.");
+			Buttons[2].setText("The mysterious black liquid that gleams like ink, and gives off fumes that make you see strange visions.");
+			Buttons[3].setText("The smooth, thick, richly purple drink that gives off a delicious smell of chocolate and plums.");
+		}
+		
+		
+		
 		label.setBounds(30,40,450,20);
-		for(int i =0,j=0; i<90; i+=30,j++) {
-			Buttons[j].setBounds(50,80+1,200,20);
+		for(int i =0,j=0; i<=90; i+=30,j++) {
+			Buttons[j].setBounds(50,80+i,200,20);
 		}
 	}
-
-	@Override
+	void checkAns() {
+		if(current==0) {
+			if(Buttons[0].isSelected()) {
+				raven++;
+			}
+			if(Buttons[1].isSelected()) {
+				griff++;
+			}
+			if(Buttons[2].isSelected()) {
+				slyth++;
+			}
+			if(Buttons[3].isSelected()) {
+				huff++;
+			}
+		}
+		if(current==1) {
+			if(Buttons[0].isSelected()) {
+				raven++;
+			}
+			if(Buttons[1].isSelected()) {
+				griff++;
+			}
+			if(Buttons[2].isSelected()) {
+				slyth++;
+			}
+			if(Buttons[3].isSelected()) {
+				huff++;
+			}
+		}
+		if(current==2) {
+			if(Buttons[0].isSelected()) {
+				raven++;
+			}
+			if(Buttons[1].isSelected()) {
+				griff++;
+			}
+			if(Buttons[2].isSelected()) {
+				slyth++;
+			}
+			if(Buttons[3].isSelected()) {
+				huff++;
+			}
+		}
+		if(current==3) {
+			if(Buttons[0].isSelected()) {
+				raven++;
+			}
+			if(Buttons[1].isSelected()) {
+				griff++;
+			}
+			if(Buttons[2].isSelected()) {
+				slyth++;
+			}
+			if(Buttons[3].isSelected()) {
+				huff++;
+			}
+		}
+		if(current==4) {
+			if(Buttons[0].isSelected()) {
+				raven++;
+			}
+			if(Buttons[1].isSelected()) {
+				griff++;
+			}
+			if(Buttons[2].isSelected()) {
+				slyth++;
+			}
+			if(Buttons[3].isSelected()) {
+				huff++;
+			}
+		}
+	}
+	
+	void calcResult() {
+        if (raven > griff && raven > slyth && raven > huff) {
+            house = " Ravenclaw";
+        } else if (griff > raven && griff > slyth && griff > huff) {
+            house = " Gryffindor";
+        } else if (slyth > raven && slyth > griff && slyth > huff) {
+            house =  " Slytherin";
+        } else if (huff > raven && huff > griff && huff > slyth) {
+            house =  " Hufflepuff";
+        } 
+    }
+	
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==btnNext) {
-			count++;
+			checkAns();
+			current++;
 			setData();
-			if(current==9) {
+			
+			
+			if(current==7) {
+				calcResult();
 				btnNext.setEnabled(false);
 				btnResult.setVisible(true);
 				btnResult.setText("result");
 			}
+		}
+		if(e.getActionCommand().equals("result")) {
+			current++;
+			JOptionPane.showMessageDialog(this, "Your House is" + house);
+			System.exit(0);
 		}
 		
 	}
